@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ game.title }}{% endblock %}
+{% block body %}
+<a class="back" href="{{ path('catalog') }}">← До каталогу</a>
+<article class="sheet">
+    <span class="category">{{ game.category.name }}</span>
+    <h1>{{ game.title }}</h1>
+    <p>{{ game.description }}</p>
+    <dl>
+        <div><dt>Кількість гравців</dt><dd>{{ game.minPlayers == game.maxPlayers ? game.minPlayers : game.minPlayers ~ '–' ~ game.maxPlayers }}</dd></div>
+        <div><dt>Тривалість партії</dt><dd>{{ game.minutes }} хв</dd></div>
+    </dl>
+</article>
+{% endblock %}

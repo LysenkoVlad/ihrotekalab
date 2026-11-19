@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<section class="hero">
+    <div><h1>Настільні ігри</h1><p>Оберіть гру за кількістю гравців і тривалістю партії.</p></div>
+    <div class="board" aria-hidden="true"><i></i><i></i><i></i></div>
+</section>
+<div class="section-head"><h2>На полиці</h2><span>{{ games|length }} у каталозі</span></div>
+<div class="grid">
+{% for game in games %}
+    <article class="card">
+        <span class="category">{{ game.category.name }}</span>
+        <h3><a href="{{ path('game_detail', {id: game.id}) }}">{{ game.title }}</a></h3>
+        <p>{{ game.description }}</p>
+        <footer><span>Гравці · {{ game.minPlayers == game.maxPlayers ? game.minPlayers : game.minPlayers ~ '–' ~ game.maxPlayers }}</span><span>{{ game.minutes }} хв</span></footer>
+    </article>
+{% else %}
+    <p>Полиця поки порожня.</p>
+{% endfor %}
+</div>
+{% endblock %}
