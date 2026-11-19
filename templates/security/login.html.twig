@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Вхід{% endblock %}
+{% block body %}
+<form class="login" method="post" action="{{ path('app_login') }}">
+    <h1>Вхід до ігротеки</h1>
+    {% if error %}<p role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</p>{% endif %}
+    <label for="email">Електронна пошта</label>
+    <input id="email" name="_username" type="email" value="{{ last_username }}" autocomplete="username" required autofocus>
+    <label for="password">Пароль</label>
+    <input id="password" name="_password" type="password" autocomplete="current-password" required>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    <button type="submit">Увійти</button>
+</form>
+{% endblock %}
